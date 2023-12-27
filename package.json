@@ -2,9 +2,9 @@
   "name": "my-contacts",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "index.js",
   "scripts": {
-    "dev": "nodemon server"
+    "dev": "nodemon index"
   },
   "author": "",
   "license": "ISC",
