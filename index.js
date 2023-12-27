@@ -7,7 +7,7 @@ const POR = process.env.PORT
 //middleware
 app.use(express.json())
 app.use(cors({
-    origin:["https://contact-frontend-one.vercel.app/"],
+    origin:["https://contact-frontend-one.vercel.app"],
     methods:["POST","GET","DELETE","PUT"],
     credentials:true
 }))
