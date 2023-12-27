@@ -6,13 +6,13 @@ const app = express()
 const POR = process.env.PORT
 //middleware
 app.use(express.json())
-// app.use(cors({
-//     origin:["https://contact-frontend-one.vercel.app"],
-//     methods:["POST","GET","DELETE","PUT"],
-//     credentials:true
-// }))
-app.use(cors({ origin: "*", 
-credentials: true }));
+app.use(cors({
+    origin:["https://contact-frontend-one.vercel.app"],
+    methods:["POST","GET","DELETE","PUT"],
+    credentials:true
+}))
+// app.use(cors({ origin: "*", 
+// credentials: true }));
 // app.use(cors())
 
 const connectToDb = async()=>{
