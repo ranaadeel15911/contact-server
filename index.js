@@ -6,12 +6,12 @@ const app = express()
 const POR = process.env.PORT
 //middleware
 app.use(express.json())
-app.use(cors())
-// app.use(cors({
-//     origin:["https://contact-frontend-one.vercel.app"],
-//     methods:["POST","GET","DELETE","PUT"],
-//     credentials:true
-// }))
+// app.use(cors())
+app.use(cors({
+    origin:["https://contact-frontend-one.vercel.app/"],
+    methods:["POST","GET","DELETE","PUT"],
+    credentials:true
+}))
 const connectToDb = async()=>{
     try {
         const resp = await mongoose.connect("mongodb+srv://adeel:adeel193725@cluster0.uwmda7z.mongodb.net/?retryWrites=true&w=majority",
