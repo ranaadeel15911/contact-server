@@ -35,25 +35,30 @@ try {
 }
 const editContacts = async(req,resp)=>{
 // resp.send('You have all contacts')
-let contacts = await contact.findById(req.params.id).exec()
-await cloudinary.uploader.destroy(contacts.cloudinary_id)
-result = null
-if(req.file){
-    result = await cloudinary.uploader.upload(req.file.path)
-    
+try {
+    let contacts = await contact.findById(req.params.id).exec()
+    await cloudinary.uploader.destroy(contacts.cloudinary_id)
+    result = null
+    if(req.file){
+        result = await cloudinary.uploader.upload(req.file.path)
+        
+    }
+    const data = {
+        name:req.body.name || contacts.name,
+        age:req.body.age || contacts.age,
+        image:result?.secure_url || contacts.image,
+        cloudinary_id:result?.public_id || contacts.cloudinary_id
+    }
+    contacts = await contact.findByIdAndUpdate(req.params.id,data,{new:true})
+    if (req.file) {
+        fs.unlinkSync(req.file.path)
+    }
+    console.log(contacts)
+    resp.status(200).json(contacts)
+    }    
+ catch (error) {
+    resp.status(400).json({message:"Gone Wrong"})
 }
-const data = {
-    name:req.body.name || contacts.name,
-    age:req.body.age || contacts.age,
-    image:result?.secure_url || contacts.image,
-    cloudinary_id:result?.public_id || contacts.cloudinary_id
-}
-contacts = await contact.findByIdAndUpdate(req.params.id,data,{new:true})
-if (req.file) {
-    fs.unlinkSync(req.file.path)
-}
-console.log(contacts)
-resp.status(200).json(contacts)
 }
 const deleteContacts = async(req,resp)=>{
 let contacts = await contact.findById(req.params.id).exec()

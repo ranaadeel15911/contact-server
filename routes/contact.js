@@ -5,7 +5,7 @@ const router = express.Router()
 
 router.get('/',getAllContacts)
 router.post('/add',upload.single('image'),addContacts)
-router.put('/edit:id',upload.single('image'),editContacts)
+router.put('/:id',upload.single('image'),editContacts)
 router.delete('/:id',deleteContacts)
 router.get('/:id',getSingleContact)
 
