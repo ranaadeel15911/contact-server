@@ -28,6 +28,9 @@ const connectToDb = async()=>{
     
 }
 connectToDb()
+app.get("/",(req,resp)=>{
+    resp.send("API is running ...")
+    })
 //routes
 app.use('/api/v1',require('./routes/contact'))
 app.listen(POR,()=>{
